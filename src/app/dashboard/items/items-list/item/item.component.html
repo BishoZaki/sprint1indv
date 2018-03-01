@@ -1,3 +1,9 @@
-<p>
-  item works!
-</p>
+<div class="">
+  <h3>Name: {{item.name}}</h3>
+  <h3>Price: {{item.price | currency}}</h3>
+  <h3>Creation Date: {{item.createdAt | date}}</h3>
+  <h3>Updated Date: {{item.updatedAt | date}}</h3>
+  <h3>Seller Name: {{item.sellerName}}</h3>
+  <button type="button" class="btn btn-primary" (click)="onEdit(item._id)" [routerLink]="['edit']">Edit</button>
+  <button type="button" class="btn btn-danger" (click)="onDelete()">Delete</button>
+</div>

@@ -13,7 +13,7 @@ export class ItemsListComponent implements OnInit {
   constructor(public itemsService: ItemsService) { }
 
   ngOnInit() {
-    this.items = this.itemsService.items; 
+    this.items = this.itemsService.items;
   }
 
 }
