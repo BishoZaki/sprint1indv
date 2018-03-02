@@ -3,7 +3,6 @@ import {UserService} from "../../user.service";
 import {Http, Response, Headers} from "@angular/http";
 import {Injectable} from "@angular/core";
 
-
 @Injectable()
 
 export class ItemsService{
@@ -11,14 +10,23 @@ export class ItemsService{
     items: Item[] = [];
     constructor(private userService: UserService, private http: Http){}
 
+    findIndex(item:Item){
+        for(var i = 0; i<this.items.length;i++){
+            if(item._id == this.items[i]._id){
+                return i;
+            }
+        }
+    }
+
     onEdit(id: number){
         this.itemId = id;
     }
-    onItemEdited(itemName: String, itemPrice: number){
+    onItemEdited(editName: String, editPrice: number){
         for(var i = 0; i < this.items.length; i++){
             if(this.items[i]._id === this.itemId){
-                this.items[i].name = itemName;
-                this.items[i].price = itemPrice;
+                this.items[i].name = editName;
+                this.items[i].price = editPrice;
+                this.editItem(this.itemId, this.items[i]);
             }
         }
     }
@@ -36,9 +44,8 @@ export class ItemsService{
         const headers = new Headers({'x-auth':this.userService.user.token});
 
         this.http.post('http://localhost:3000/api/product/createProduct',item,{headers:headers})
-            .subscribe((res: Response)=>{
-                this.getItems();
-            },(err)=>{
+            .subscribe((res: Response)=>{this.getItems();},
+                (err)=>{
                 console.log(err);
             });
 
@@ -50,11 +57,10 @@ export class ItemsService{
             .subscribe((res: Response)=>{
                 this.getItems();
             });
-
     }
 
-    /*editItem(id:number,updatedItem:Item){
-        var index = this.findIndexById(updatedItem);
+    editItem(id:number,updatedItem:Item){
+        var index = this.findIndex(updatedItem);
 
         const headers = new Headers({'x-auth':this.userService.user.token});
 
@@ -62,5 +68,5 @@ export class ItemsService{
             .subscribe((res: Response)=>{
                 this.getItems();
             });
-    }*/
+    }
 }

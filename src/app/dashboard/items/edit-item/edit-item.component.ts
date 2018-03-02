@@ -12,7 +12,7 @@ export class EditItemComponent implements OnInit {
 
   ngOnInit() {
   }
-  onEdit(editName: String, editPrice: number){
-    this.itemsService.onItemEdited(editName,editPrice);
+  onEdit(editName, editPrice){
+    this.itemsService.onItemEdited(editName.value,editPrice.value);
   }
 }

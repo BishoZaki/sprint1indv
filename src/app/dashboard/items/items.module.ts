@@ -16,3 +16,4 @@ import { EditItemComponent } from './edit-item/edit-item.component';
   providers: [ItemsService]
 })
 export class ItemsModule {}
+

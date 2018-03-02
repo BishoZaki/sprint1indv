@@ -1,5 +1,9 @@
 <div>
-  <input type="text" name="name" #itemName>
-  <input type="number" name="price" #itemPrice>
-  <button type="submit" class="btn btn-success" (click)="onEdit(itemName,itemPrice)" [routerLink] = "['../']">Submit</button>
+  <h4>New Product Name: </h4>
+  <input type="text" name="name" #editName>
+  <br><br>
+  <h4>New Product Price: </h4>
+  <input type="number" name="price" #editPrice>
+  <br><br>
+  <button type="submit" class="btn btn-success" (click)="onEdit(editName,editPrice)" [routerLink] = "['../']">Submit</button>
 </div>

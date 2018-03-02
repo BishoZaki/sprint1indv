@@ -13,6 +13,7 @@ export class ItemsListComponent implements OnInit {
   constructor(public itemsService: ItemsService) { }
 
   ngOnInit() {
+    this.itemsService.getItems();
     this.items = this.itemsService.items;
   }
 
